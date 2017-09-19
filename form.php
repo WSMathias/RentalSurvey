@@ -18,10 +18,10 @@ if ($location == null || $area == 0 || $price == 0 || $deposit == 0 || $lease==0
     if($conn->connect_error) {
        die("connection failed : ".$conn->connect_error);
     }
-    $sql = "insert into survey(location,area,price,deposit,lease_period) values('$location',$area,$price,$deposit,$lease)";
+    $sql = "insert into survey(location,area,price,deposit,lease_period) values('$location',$area,$price/$area,$deposit,$lease)";
     if($conn->query($sql)) {
         $_SESSION["statusMessage"] = "success";
-        header("Location: index.php");
+        header("Location: surveyEntry.php");
     }
 }
 

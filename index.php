@@ -16,14 +16,15 @@ session_start();
          }
          $sql = " select distinct(location) from survey where location like '%$searchLocation%'";
          if($result = $conn->query($sql)) {
-            if (mysqli_num_rows($result)>1) {
+            if (mysqli_num_rows($result)>0) {
                 while ($row = $result->fetch_assoc()) {
                     $list[] = $row["location"];
                 }
             } 
-            else {
-                header("Location: surveyResult.php?searchLocation=$searchLocation");
-            }
+           /* else if(mysqli_num_rows($result)==1){
+                $row=$result->fetch_assoc();
+                header("Location: surveyResult.php?searchLocation=" . $row['location']);
+            }*/
          }
     }
 ?>

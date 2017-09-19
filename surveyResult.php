@@ -74,7 +74,7 @@ if ($_GET["searchLocation"] != "") {
         <div class="jumbotron">
             <h1>Location : <?php echo strtoupper($searchString); ?></h1>
             <h3>Average Price :<?php echo $averagePrice; ?></h3>
-            <h3>Average Deposit : <?php echo $averagePrice; ?></h3>
+            <h3>Average Deposit : <?php echo $averageDeposit; ?></h3>
             <h3>Average Lease Period : <?php echo $averageLease; ?></h3>
         </div>
         
