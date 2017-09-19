@@ -1,13 +1,9 @@
 <?php
 $highDemand;
 $lowDemand;
-$dbserver = "";
-$dbusername = "survey";
-$dbpassword = "survey";
-$dbname = "surveydb";
-$connDemand = new mysqli($dbserver,$dbusername,$dbpassword,$dbname);
-$sqlMinDemand = "select location from survey where price in(select min(price) from survey)";
-if ($result=$connDemand->query($sqlMinDemand)) {
+include("dbConnect.php");
+$sqlMin = "select location from survey where price in(select min(price) from survey)";
+if ($result=$conn->query($sqlMinDemand)) {
     if (mysqli_num_rows($result) > 0) {
         $lowDemand = $result->fetch_assoc()["location"]; 
     }

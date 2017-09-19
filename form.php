@@ -10,11 +10,7 @@ if ($location == null || $area == 0 || $price == 0 || $deposit == 0 || $lease==0
     $_SESSION["statusMessage"] = "error";
     header("Location: surveyEntry.php");
 } else {
-    $dbserver = "";
-    $dbusername = "survey";
-    $dbpassword = "survey";
-    $dbname = "surveydb";
-    $conn = new mysqli($dbserver,$dbusername,$dbpassword,$dbname);
+    include("dbConnect.php");
     if($conn->connect_error) {
        die("connection failed : ".$conn->connect_error);
     }

@@ -3,15 +3,11 @@ session_start();
 $currentURL = $_SERVER['REQUEST_URI'];
 if ($_GET["searchLocation"] != "") {
     $searchString = $_GET["searchLocation"];
-    $dbserver = "";
-    $dbusername = "survey";
-    $dbpassword = "survey";
-    $dbname = "surveydb";
     $location ;
     $averagePrice ;
     $averageDeposit;
     $averageLease ;
-    $conn = new mysqli($dbserver,$dbusername,$dbpassword,$dbname);
+    include("dbConnect.php");
     if($conn->connect_error) {
        die("connection failed : ".$conn->connect_error);
     }
@@ -28,10 +24,9 @@ if ($_GET["searchLocation"] != "") {
          }
        }
     }
-}else {    
-    header("Location: index.php");
-}
-
+    }else {    
+        header("Location: index.php");
+    }
 ?>
 <html>
 <head>
@@ -46,10 +41,8 @@ if ($_GET["searchLocation"] != "") {
             margin-top:100px;
             padding : 20px;
         }
-
         </style>
     </head>
-  
 <body>
 <div class="nav navbar-inverse">
             <div class="container-fluid">
@@ -64,12 +57,10 @@ if ($_GET["searchLocation"] != "") {
                 </ul>
             </div>
  </div>
- 
- <?php 
-        if ($_GET["stat"] == 'true') {
-            include("stats.php");
-        }
-
+        <?php 
+            if ($_GET["stat"] == 'true') {
+                include("stats.php");
+            }
         ?>
  <div class="container">
         <div class="jumbotron">
@@ -77,9 +68,7 @@ if ($_GET["searchLocation"] != "") {
             <h3>Average Price :<?php echo $averagePrice; ?></h3>
             <h3>Average Deposit : <?php echo $averageDeposit; ?></h3>
             <h3>Average Lease Period : <?php echo $averageLease; ?></h3>
-        </div>
-        
+        </div>    
  </div>
-
 </body>
 </html>

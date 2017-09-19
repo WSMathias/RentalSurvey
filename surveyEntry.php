@@ -7,23 +7,7 @@ $currentURL = $_SERVER['REQUEST_URI'];
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <link href="css/main.css" rel="stylesheet">
-       <style>
-        .form_box {
-            background:grey;
-            height:auto;
-            margin-top:100px;
-            padding : 20px;
-        }
-
-        .submit_button {
-            margin : 10px 42%;
-        }
-        </style>
-    </head>
-    <body>
-    
+        <script src="https://maxcdn.bootstrapcdn.com<!--  -->
         <div class="nav navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -38,10 +22,9 @@ $currentURL = $_SERVER['REQUEST_URI'];
             </div>
         </div>
         <?php 
-        if ($_GET["stat"] == 'true') {
-            include("stats.php");
-        }
-
+            if ($_GET["stat"] == 'true') {
+                include("stats.php");
+            }
         ?>
         <div class="container-fluid">
             <div class="row">
@@ -68,29 +51,9 @@ $currentURL = $_SERVER['REQUEST_URI'];
                     <input type="number" class="form-control" name="lease">
                     </div>
                     <input type="submit"  class="submit_button col-md-offest-4  mol-md-offset-4 btn btn-primary">
-                    <?php
-                    session_start(); 
-                    if (isset($_SESSION["statusMessage"]))
-                    {
-                    ?>
-                    <div class="alert alert-<?php if($_SESSION['statusMessage']=='error') echo 'danger'; else echo 'success';?> alert-dismissable fade-in">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                        <strong><?php
-                            if ($_SESSION["statusMessage"] == "success")
-                                echo "Successfully inserted!!";
-                            else
-                                echo "Fields cannot be empty";
-                            unset($_SESSION["statusMessage"]);
-                        ?></strong>
-                    </div>
-                    <?php 
-                    }
-                    ?>
-
                   </form>
                 </div>
             </div>
-        </div>
-        
+        </div>    
     </body>
 </html>

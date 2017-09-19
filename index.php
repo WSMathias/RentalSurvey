@@ -4,13 +4,9 @@ $currentURL = $_SERVER['REQUEST_URI'];
 <?php 
 session_start();
     $searchLocation = $_GET["searchLocation"];
-    $dbserver = "";
-    $dbusername = "survey";
-    $dbpassword = "survey";
-    $dbname = "surveydb";
+    include("dbConnect.php");
     $list = [];
-    $conn = new mysqli($dbserver,$dbusername,$dbpassword,$dbname);
-    if ($_GET["searchLocation"]!="")  {
+    if ($searchLocation!="")  {
         if($conn->connect_error) {
             die("connection failed : ".$conn->connect_error);
          }
@@ -21,10 +17,6 @@ session_start();
                     $list[] = $row["location"];
                 }
             } 
-           /* else if(mysqli_num_rows($result)==1){
-                $row=$result->fetch_assoc();
-                header("Location: surveyResult.php?searchLocation=" . $row['location']);
-            }*/
          }
     }
 ?>
@@ -45,7 +37,6 @@ session_start();
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="index.php">Home</a></li>
                     <li><a href="surveyEntry.php">Survey Entry</a></li>
-                    <!--<li><a href="surveyResult.php">Survey Result</a></li>-->
                     <li><a href="<?php echo $currentURL. '?stat=true'; ?>">Get statics</a></li>
                 </ul> 
             </div>
@@ -68,56 +59,24 @@ session_start();
                     <div class="form-container">
                     <a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-search"></span> </a>
                          <input type="text" class="form-control" name="searchLocation" >
-    
                          <div id="suggestion">
-                             <span>asdas</span>
-                             <span>asdas</span>
-                             <span>asdas</span>
-                             <span>asdas</span>
-                             <span>asdas</span>
-                             <span>asdas</span>
-                             <span>asdas</span>
-                             <span>asdas</span>
-                             <span>asdas</span>
-                             <span>asdas</span>
-                             <span>asdas</span>
-                             <span>asdas</span>
+                             <span>suggestion dropdown</span>
                          </div>
-                         
-                    </div>          
-                     
+                    </div>                             
             </form>
-            <?php
-            /*        session_start(); 
-                    if (isset($_SESSION["statusMessage"]))
-                    {
-                    ?>
-                    <div class="alert alert-danger alert-dismissable fade-in">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                        <strong><?php
-                            echo $_SESSION["statusMessage"];
-                            unset($_SESSION["statusMessage"]);
-                        ?></strong>
-                    </div>
-                    <?php 
-                    }
-                    */
-                    ?>
-
             </div>
        </div>
        <div class="row">
        <div class="col-md-offset-4 col-md-4 col-md-offset-4">
                 <ol>
                 <?php 
-                foreach($list as $row) {
-                    echo '<li><a href="surveyResult.php?searchLocation=' .$row.'">'.$row .'</a> </li>';
-                }
+                    foreach($list as $row) {
+                        echo '<li><a href="surveyResult.php?searchLocation=' .$row.'">'.$row .'</a> </li>';
+                    }
                 ?>
                 </ol>
        </div>
        </div>
  </div>
-
 </body>
 </html>
