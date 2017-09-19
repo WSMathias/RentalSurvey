@@ -1,4 +1,4 @@
-
+$searchboxWidth : 100%;
         body {
             background : url(http://architectureimg.com/wp-content/uploads/2016/08/skyscrapers-sunset-vancouver-peaceful-ocean-skyscrapers-building-evening-city-lights-canada-road-splendor-sky-nature-skyline-architecture-beauty-beautiful-lovely-1080p-wallpaper.jpg) no-repeat center center fixed;
             background-size:cover;
@@ -29,8 +29,26 @@
             height:auto;
             width:auto;
             padding : 20px;
+            .form-container {
+                a {
+                    right:-25px; top:17px; position:absolute;
+                }
+
+                #suggestion {
+                    border-radius:6px;
+                    background:  white;
+                    width : $searchboxWidth;
+                    span {
+                        padding : 2px 5px;
+                        border:1px solid #f5f0f0;
+                        display: block;
+                    }
+                    overflow:auto; 
+                    max-height: 185px;
+                }
+            }
             input {
-                width : 600px;
+                width : $searchboxWidth;
                 display:inline;
             }
         }

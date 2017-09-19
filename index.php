@@ -63,13 +63,32 @@ session_start();
 </div>
  <div class="container">
        <div class="row">
-            <div class="col-md-offset-2 col-md-8 col-md-offset-2">
+            <div class="col-md-offset-2 col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10 col-xs-offset-1">
             <form class="search_box" action="index.php">
-                     <input type="text" class="form-control" name="searchLocation" >
-                     <a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-search"></span> </a>
+                    <div class="form-container">
+                    <a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-search"></span> </a>
+                         <input type="text" class="form-control" name="searchLocation" >
+    
+                         <div id="suggestion">
+                             <span>asdas</span>
+                             <span>asdas</span>
+                             <span>asdas</span>
+                             <span>asdas</span>
+                             <span>asdas</span>
+                             <span>asdas</span>
+                             <span>asdas</span>
+                             <span>asdas</span>
+                             <span>asdas</span>
+                             <span>asdas</span>
+                             <span>asdas</span>
+                             <span>asdas</span>
+                         </div>
+                         
+                    </div>          
+                     
             </form>
             <?php
-                    session_start(); 
+            /*        session_start(); 
                     if (isset($_SESSION["statusMessage"]))
                     {
                     ?>
@@ -82,6 +101,7 @@ session_start();
                     </div>
                     <?php 
                     }
+                    */
                     ?>
 
             </div>
