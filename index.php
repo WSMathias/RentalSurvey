@@ -1,7 +1,4 @@
 <?php 
-$currentURL = $_SERVER['REQUEST_URI'];
-?>
-<?php 
 session_start();
     $searchLocation = $_GET["searchLocation"];
     include("dbConnect.php");

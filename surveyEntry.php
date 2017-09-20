@@ -1,13 +1,10 @@
-<?php 
-$currentURL = $_SERVER['REQUEST_URI'];
-?>
 <!DOCTYPE html>
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com<!--  -->
+        <script src="https://maxcdn.bootstrapcdn.com"> </script>
         <div class="nav navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -16,16 +13,10 @@ $currentURL = $_SERVER['REQUEST_URI'];
                 <ul class="nav navbar-nav">
                     <li><a href="index.php">Home</a></li>
                     <li class="active"><a href="surveyEntry.php">Survey Entry</a></li>
-                    <li><a href="surveyResult.php">Survey Result</a></li>
-                    <li><a href="<?php echo $currentURL. '?stat=true'; ?>">Get statics</a></li>
+                    <li><a href="#">Get statics</a></li>
                 </ul>
             </div>
         </div>
-        <?php 
-            if ($_GET["stat"] == 'true') {
-                include("stats.php");
-            }
-        ?>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-offset-2 col-md-8 col-md-offset-2 form_box ">
