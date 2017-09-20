@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Survey Statistics</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -9,23 +9,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<?php
-include(dbConnect.php);
-  if($conn->connect_error) {
-      die("connection failed : ".$conn->connect_error);
-  }
-   $sql = " SELECT  COUNT(DISTINCT location) from survey";
-   if($result = $conn->query($sql)) {
-      if (mysqli_num_rows($result)>0) {
-          while ($row = $result->fetch_assoc()) {
-              $list[] = $row;
-          }
-      } 
-    }
-?>
-<div class="container">
-  <h2>Bordered Table</h2>
-  <p>The .table-bordered class adds borders to a table:</p>            
+<div class="container">           
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -33,18 +17,15 @@ include(dbConnect.php);
         <th>Responders</th>
         <th>Avg Rent</th>
         <th>Avg Deposit</th>
+        <th>Avg Lease Period</th>
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <td>BTM</td>
-        <td>20</td>
-        <td>15000</td>
-        <td>50000</td>
-      </tr>
+    <tbody id="tbrow">
     </tbody>
   </table>
 </div>
+<script src="./js/HttpClient.js"></script>
+<script src="./js/table.js"></script>
 </body>
 </html>
 
