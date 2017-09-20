@@ -45,7 +45,7 @@
                     <label>Lease period(month) :</label>
                     <input type="number" class="form-control" name="lease">
                     </div>
-                    <input type="button" value="Submit" class="submit_button col-md-offest-4  mol-md-offset-4 btn btn-primary">
+                    <input type="submit" value="Submit" class="submit_button col-md-offest-4  mol-md-offset-4 btn btn-primary">
                   </form>
                 </div>
             </div>

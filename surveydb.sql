@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 20, 2017 at 11:20 AM
+-- Generation Time: Sep 20, 2017 at 01:48 PM
 -- Server version: 10.0.31-MariaDB
 -- PHP Version: 7.0.7
 
@@ -48,7 +48,12 @@ INSERT INTO `details` (`ID`, `AREA`, `PRICE`, `DEPOSIT`, `LEASE_PERIOD`, `Lid`) 
 (4, 6756.00000, 8987.00000, 979.00000, 8, 1),
 (5, 5445.00000, 675.00000, 656.00000, 5, 2),
 (6, 6475.00000, 56578.00000, 7868.00000, 868, 2),
-(7, 6756.00000, 65757.00000, 6575.00000, 6756, 2);
+(7, 6756.00000, 65757.00000, 6575.00000, 6756, 2),
+(8, 45.00000, 12.53333, 564.00000, 564, 8),
+(9, 45.00000, 12.53333, 564.00000, 564, 11),
+(10, 2342.00000, 0.31896, 5675.00000, 567, 12),
+(11, 6575.00000, 0.10266, 567567.00000, 6567, 13),
+(12, 45464.00000, 0.00101, 5464.00000, 56, 14);
 
 -- --------------------------------------------------------
 
@@ -66,13 +71,19 @@ CREATE TABLE `places` (
 --
 
 INSERT INTO `places` (`id`, `location`) VALUES
-(1, 'Kalyan Nagar'),
-(2, 'HSR Layout'),
-(4, 'BTM Layout'),
-(5, 'Indiranagar'),
-(6, 'RT Nagar'),
-(7, 'KR pate'),
-(8, 'HAL');
+(1, 'KALYAN NAGAR'),
+(2, 'HSR LAYOUT'),
+(4, 'BTM LAYOUT'),
+(5, 'INDIRANAGAR'),
+(6, 'RT NAGAR'),
+(7, 'KR PATE'),
+(8, 'HAL'),
+(9, 'BTM LAYOUT'),
+(10, 'BANASWADI'),
+(11, 'MM'),
+(12, 'LOCATION'),
+(13, 'RTYUHJI, SECTOR V, KOLKATA, WEST BENGAL, INDIA'),
+(14, 'BARS');
 
 -- --------------------------------------------------------
 
@@ -133,12 +144,12 @@ ALTER TABLE `survey`
 -- AUTO_INCREMENT for table `details`
 --
 ALTER TABLE `details`
-  MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `places`
 --
 ALTER TABLE `places`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `survey`
 --
