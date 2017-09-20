@@ -35,7 +35,7 @@ session_start();
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="index.php">Home</a></li>
                     <li><a href="surveyEntry.php">Survey Entry</a></li>
-                    <li><a href="<?php echo $currentURL. '?stat=true'; ?>">Get statics</a></li>
+                    <li><a href="table.php">Get statics</a></li>
                 </ul> 
             </div>
  </div>
