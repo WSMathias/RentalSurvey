@@ -1,0 +1,42 @@
+$searchboxWidth : 100%;
+.heading {
+    font-family: Courier New, Courier, monospace; 
+    color : white;
+    padding-top : 100px;
+    background-color:transparent;
+}
+
+.search_box {
+    height:auto;
+    width:auto;
+    padding : 20px;
+    .form-container {
+        a {
+            right:-25px; top:17px; position:absolute;
+        }
+        .advancedSearch {
+            right : 35px; top:20px; position:absolute;
+        }
+
+        #suggestion {
+            border-radius:6px;
+            background:  white;
+            width : $searchboxWidth;
+            span {
+                padding : 2px 5px;
+                border:1px solid #f5f0f0;
+                display: block;
+            }
+            overflow:auto; 
+            max-height: 185px;
+        }
+    }
+    input {
+        width : $searchboxWidth;
+        display:inline;
+    }
+}
+
+.submit_button {
+    margin : 10px 42%;
+}

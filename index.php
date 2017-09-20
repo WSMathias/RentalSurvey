@@ -24,6 +24,7 @@ session_start();
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link href="css/main.css" rel="stylesheet">
+        <link href="css/index.css" rel="stylesheet">
     </head>
 <body>
 <div class="nav navbar-inverse">
@@ -39,12 +40,6 @@ session_start();
             </div>
  </div>
  
- <?php 
-        if ($_GET["stat"] == 'true') {
-            include("stats.php");
-        }
-
-        ?>
 <div class="jumbotron heading text-center">
         <h1>Find your dream property.</h1>
         <h3> Every information at your finger tip. </h3>
@@ -55,11 +50,14 @@ session_start();
             <form class="search_box" action="index.php">
                     <div class="form-container">
                     <a href="#" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-search"></span> </a>
+                    <a href="#" class="advancedSearch btn btn-info btn-md">Advanced</a>
                          <input type="text" class="form-control" name="searchLocation" >
                          <div id="suggestion">
-                             <span>suggestion dropdown</span>
+                             <!-- <span>suggestion dropdown</span> -->
                          </div>
-                    </div>                             
+                    </div>
+                    <div>
+</div>                             
             </form>
             </div>
        </div>
