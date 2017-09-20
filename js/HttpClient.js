@@ -21,7 +21,10 @@ get(qry=""){
     xhr.onload = () =>{
         if (xhr.status==200){
             console.log(xhr.statusText)
-            resolve(JSON.parse(xhr.response));
+            if(xhr.response!=""){
+                resolve(JSON.parse(xhr.response));              
+            }
+            resolve(xhr.response);
         }
         else
             reject(xhr.statusText)

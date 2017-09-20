@@ -7,7 +7,7 @@ if($conn->connect_error) {
  }
  else if($query!="") {
     $query=strtoupper($query);
-    $sql = " select * from survey where location like '%$query%'";
+    $sql = " select * from places  where location like '%$query%'";
     if($result = $conn->query($sql)) {
         if (mysqli_num_rows($result)>0) {
             while ($row = $result->fetch_assoc()) {
@@ -17,4 +17,5 @@ if($conn->connect_error) {
     }
     echo json_encode($return_arr);
  }
+ echo "";
 ?>
