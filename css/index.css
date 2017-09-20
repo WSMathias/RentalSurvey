@@ -1,7 +1,7 @@
 .heading {
   font-family: Courier New, Courier, monospace;
   color: white;
-  padding-top: 100px;
+  padding-top: 80px;
   background-color: transparent; }
 
 .search_box {
@@ -26,9 +26,13 @@
       padding: 2px 5px;
       border: 1px solid #f5f0f0;
       display: block; }
+  .search_box label {
+    color: white; }
   .search_box input {
     width: 100%;
     display: inline; }
+  .search_box .advanced_option {
+    display: none; }
 
 .submit_button {
   margin: 10px 42%; }

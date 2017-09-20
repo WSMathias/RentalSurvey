@@ -2,7 +2,7 @@ $searchboxWidth : 100%;
 .heading {
     font-family: Courier New, Courier, monospace; 
     color : white;
-    padding-top : 100px;
+    padding-top : 80px;
     background-color:transparent;
 }
 
@@ -31,9 +31,15 @@ $searchboxWidth : 100%;
             max-height: 185px;
         }
     }
+    label {
+        color : white;
+    }
     input {
         width : $searchboxWidth;
         display:inline;
+    }
+    .advanced_option {
+        display: none;
     }
 }
 
