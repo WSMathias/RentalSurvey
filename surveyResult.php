@@ -72,12 +72,11 @@ if ($_GET["searchLocation"] != "") {
     if($conn->connect_error) {
        die("connection failed : ".$conn->connect_error);
     }
-    $sql = "select * from places a,details b where a.location='$searchString' $area $deposit $lease";
+    $sql = "select * from places a,details b where a.id=b.Lid and  a.location='$searchString' $area $deposit $lease";
     if($result = $conn->query($sql)) {
        if (mysqli_num_rows($result)>0){            
             while ($row = $result->fetch_assoc()) 
                 $list[] = $row;
-
        } else {
             header("Location: index.php");
        }
@@ -112,14 +111,14 @@ if ($_GET["searchLocation"] != "") {
  </div>
  <div class="container">
         <div class="row">
-          <div class="col-md-12">           
+          <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">           
             <table class="table table-bordered">
                 <thead>
                 <tr>
                     <th>LOCATION</th>
                     <th>AREA</th>
                     <th>DEPOSIT</th>
-                    <th>lEASE PERIOD</th>
+                    <th>LEASE PERIOD</th>
                 </tr>
                 </thead>
                 <tbody id="tbrow">

@@ -1,4 +1,10 @@
+table td, table tr {
+  background: #D5EEED; }
+
 body {
-  color: red; }
+  display: none; }
+
+.alert_box {
+  margin: 5px; }
 
 /*# sourceMappingURL=surveyResult.css.map */

@@ -1,22 +1,56 @@
 <?php 
 session_start();
-$location = $_GET["place"];
-$area = (float)$_GET["area"];
-$price = (float)$_GET["price"];
-$deposit = (float)$_GET["deposit"];
-$lease = (int)$_GET["lease"];
+$_SESSION["statusMessage"] = "";
+$location = $_POST["place"];
+$area = (float)$_POST["area"];
+$price = (float)$_POST["price"];
+$deposit = (float)$_POST["deposit"];
+$lease = (int)$_POST["lease"];
 $lid;
 
-function onError(){
-    $_SESSION["statusMessage"] = "error";
+function onError(){ 
     header("Location: surveyEntry.php");
 }
 function onSuccess(){
-    $_SESSION["statusMessage"] = "success";
+    $_SESSION["statusMessage"] .= "<br>success<br>";
     header("Location: surveyEntry.php");
 }
+function isempty() {
+    if ($location == null || $area == 0 || $price == 0 || $deposit == 0 || $lease==0){
+        $_SESSION["statusMessage"] .= "Fields cannot be empty.<br>"; 
+        return true;
+    }
+    else
+        return false;
+}
+function validate($string) {
+    if (preg_match('/[\'^£$%&*()}{@#~?><>|=_+¬-]/', $string))
+       {
+         $_SESSION["statusMessage"] .= $string." cannot have special charectors<br>"; 
+         return false;
+        }
+    else
+        {
+            return true;}
+}
+function isValidated(){
+    global $area,$location,$lease,$deposit;
+    if(!isempty()) {
+        if(validate($location) && validate($deposit) && validate($lease) && validate($area)){
+            if (($area > 300 && $area < 100000) || ($lease > 1))
+               return true;
+            else{
+                $_SESSION["statusMessage"] .= "Area must be between 300 sqrft and 100000 sqrft<br>"; 
+                return false;
+            }
+        }
+        else  {
+            return false;
+        }
+    }
+}
 
-if ($location == null || $area == 0 || $price == 0 || $deposit == 0 || $lease==0) {
+if (!isValidated()) {
     onError();
 } else {
     include("dbConnect.php");

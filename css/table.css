@@ -1,4 +1,6 @@
-table{
-    background-color: #F0E8E8;
-    overflow: auto;
-}
+table {
+  background-color: #F0E8E8; }
+  table tr, table td {
+    word-wrap: break-word; }
+
+/*# sourceMappingURL=table.css.map */
