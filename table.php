@@ -7,10 +7,33 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="css/main.css" rel="stylesheet">
+  <link href="css/index.css" rel="stylesheet">
+  <link href="css/table.css" rel="stylesheet">
 </head>
 <body>
-<div class="container">           
-  <table class="table table-bordered">
+<div class="nav navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+                    <li><a class="navbar-brand">RentalSurvey</a></li>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active"><a href="index.php">Home</a></li>
+                        <li><a href="surveyEntry.php">Survey Entry</a></li>
+                        <li><a href="table.php">Get statics</a></li>
+                    </ul> 
+                </div>
+            </div>
+ </div>
+<div class=" row " >
+<div class=" col--offset-2 col-xs-10  col-sm-10  col-md-10 col-lg-10" >           
+  <table class=" table table-bordered">
     <thead>
       <tr>
         <th>Location</th>
@@ -23,6 +46,7 @@
     <tbody id="tbrow">
     </tbody>
   </table>
+  </div>
 </div>
 <script src="./js/HttpClient.js"></script>
 <script src="./js/table.js"></script>

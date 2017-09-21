@@ -28,7 +28,7 @@ if ($location == null || $area == 0 || $price == 0 || $deposit == 0 || $lease==0
     if($result=$conn->query($sqlCheck)) {
         if(mysqli_num_rows($result)>0){
             $lid=($result->fetch_assoc())["id"];
-                $sql = "insert into details(area,price,deposit,lease_period,lid) values($area,$price/$area,$deposit,$lease,$lid)";
+                $sql = "insert into details(area,price,deposit,lease_period,lid) values($area,ROUND($price/$area,2),$deposit,$lease,$lid)";
                 if($conn->query($sql)) {
                     onSuccess();
                 }
@@ -36,7 +36,7 @@ if ($location == null || $area == 0 || $price == 0 || $deposit == 0 || $lease==0
         else{
             echo "new location= ". $location." ". $lid;
             $sqlPlaces ="insert into places(location) values('$location')";
-            $sqlDetails ="insert into details(area,price,deposit,lease_period,lid) values($area,$price/$area,$deposit,$lease,LAST_INSERT_ID())";        
+            $sqlDetails ="insert into details(area,price,deposit,lease_period,lid) values($area,ROUND($price/$area,2),$deposit,$lease,LAST_INSERT_ID())";        
             if($conn->query($sqlPlaces) && $conn->query($sqlDetails)) {
                 onSuccess();
             }
