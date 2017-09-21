@@ -8,7 +8,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link href="css/main.css" rel="stylesheet">
-  <link href="css/index.css" rel="stylesheet">
   <link href="css/table.css" rel="stylesheet">
 </head>
 <body>
@@ -32,15 +31,15 @@
             </div>
  </div>
 <div class=" row " >
-<div class=" col--offset-2 col-xs-10  col-sm-10  col-md-10 col-lg-10" >           
+<div class=" col-xs-10  col-sm-10  col-md-10 col-lg-10" >           
   <table class=" table table-bordered">
     <thead>
       <tr>
         <th>Location</th>
-        <th>Responders</th>
-        <th>Avg Rent</th>
-        <th>Avg Deposit</th>
-        <th>Avg Lease Period</th>
+        <th>Responders <a href="#" onclick="sortRespond()"><span class=" sort glyphicon glyphicon-sort"></span></a></th>
+        <th>Avg Rent/sqft <a href="#" onclick="sortRent()"><span class=" sort glyphicon glyphicon-sort"></span></a></h>
+        <th>Avg Deposit <a href="#" onClick="sortDeposit()"><span class=" sort glyphicon glyphicon-sort"></span></a></th>
+        <th>Avg Lease Period <a href="#" onclick="sortPeriod()"><span class=" sort glyphicon glyphicon-sort"></span></a></th>
       </tr>
     </thead>
     <tbody id="tbrow">

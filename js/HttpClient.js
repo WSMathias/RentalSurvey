@@ -2,9 +2,9 @@ class HttpClient{
     constructor(url){
         //make sure url ends with "/"
         this.url=url;        
-        if(this.url.substr(-1)!="/"){
-            this.url=this.url+"/"
-        }
+        // if(this.url.substr(-1)!="/"){
+        //     this.url=this.url+"/"
+        // }
         this.id=""
         this.qry=""
         this.data=""
@@ -15,6 +15,7 @@ get(qry=""){
     return new Promise(function(resolve,reject){
     let xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
+    console.log(client.url+qry);
     xhr.open("GET", client.url+qry);
     xhr.setRequestHeader("content-type", "application/json");      
     xhr.setRequestHeader("cache-control", "no-cache");
