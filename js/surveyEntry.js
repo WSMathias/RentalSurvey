@@ -3,9 +3,7 @@ function initAutocomplete() {
     var defaultBounds = new google.maps.LatLngBounds(
         new google.maps.LatLng(20.5937, 78.9629));
         var searchBox = new google.maps.places.SearchBox(input, {bounds: defaultBounds});
-            searchBox.setComponentRestrictions(
-            {'country': ['in','IN']}
-        );
+            
         searchBox.addListener('places_changed', function() {
                 var places = searchBox.getPlaces();
                 if (places.length == 0) {

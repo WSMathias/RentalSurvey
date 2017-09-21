@@ -10,20 +10,27 @@
     </head>
         <body>
         <div class="nav navbar-inverse">
-            <div class="container-fluid">
+                <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand">Region Survey</a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+                    <li><a class="navbar-brand">RentalSurvey</a></li>
                 </div>
-                <ul class="nav navbar-nav  navbar-right">
-                    <li><a href="index.php">Home</a></li>
-                    <li class="active"><a href="surveyEntry.php">Survey Entry</a></li>
-                    <li><a href="#">Get statics</a></li>
-                </ul>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active"><a href="index.php">Home</a></li>
+                        <li><a href="surveyEntry.php">Survey Entry</a></li>
+                        <li><a href="table.php">Get statics</a></li>
+                    </ul> 
+                </div>
             </div>
         </div>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-offset-1 col-md-6 col-md-offset-5 form_box ">
+                <div class="col-md-offset-3 col-md-6 col-md-offset-3 form_box ">
                   <form action="form.php" method="GET" >
                     <div class="form-group">
                     <label>Location </label>
@@ -38,14 +45,16 @@
                     <input type="number" class="form-control" name="price">
                     </div>
                     <div class="form-group">
-                    <label>Desposit </label>
+                    <label>Desposit (Rs) </label>
                     <input type="number" class="form-control" name="deposit">
                     </div>
                     <div class="form-group">
                     <label>Lease period(month) :</label>
                     <input type="number" class="form-control" name="lease">
                     </div>
+                    <div class="text-center">
                     <input type="submit" value="Submit" class="submit_button col-md-offest-4  mol-md-offset-4 btn btn-primary">
+                    </div>
                   </form>
                 </div>
             </div>

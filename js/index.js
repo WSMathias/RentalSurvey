@@ -10,7 +10,8 @@
     }
     /*  select the suggested places from suggestion list */
     function selectSuggestion(value) {
-        const searchTxt = document.getElementById('searchTxt').value = value; 
+        document.getElementById('searchTxt').value = value; 
+        document.getElementById('suggestion').innerHTML="";    
     }
 
 
@@ -20,13 +21,18 @@
      */
     function suggestPlaces() {
         const searchTxt = document.getElementById('searchTxt').value;
-        const suggestionBox = document.getElementById('suggestion');
-        const request = new HttpClient("autocomplete.php");
-        request.get("?q="+searchTxt).then(function(response) {
-            suggestionBox.innerHTML = "";
-            for (i in response) {
-                suggestionBox.innerHTML += '<span onclick="selectSuggestion(this.innerHTML)">' + response[i] + '</span>'; 
-            }
-        });
+        if (searchTxt!="") {
+            const suggestionBox = document.getElementById('suggestion');
+            const request = new HttpClient("autocomplete.php");
+            request.get("?q="+searchTxt).then(function(response) {
+                suggestionBox.innerHTML = "";
+                for (i in response) {
+                    suggestionBox.innerHTML += '<span onclick="selectSuggestion(this.innerHTML)">' + response[i] + '</span>'; 
+                }
+            });
+        }
+        else {
+            document.getElementById('suggestion').innerHTML="";    
+        }
         return;
     }

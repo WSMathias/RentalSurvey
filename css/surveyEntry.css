@@ -1,5 +1,5 @@
 body {
-  background: url(../images/surveyEntryBg.jpg) no-repeat center center fixed;
+  background: url(http://3.bp.blogspot.com/-M2b-nJgY-Mo/Ujg2f2g2iGI/AAAAAAAABTI/SHss8BPcjQ8/s1600/wooden-new-simple-plain-image-wallpaper.jpg) no-repeat center center fixed;
   background-size: cover; }
 
 .nav a {
@@ -7,11 +7,10 @@ body {
 
 .form_box {
   padding-top: 50px;
-  color: white;
-  font-size: 16px;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; }
+  color: black;
+  font-size: 20px; }
   .form_box input {
-    background: white;
+    background: rgba(174, 218, 231, 0.53);
     color: #000066;
     border-color: #000066; }
   .form_box .submit_button {
