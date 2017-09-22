@@ -1,3 +1,7 @@
+/**
+ * Google places api function
+ * generates list of places in India.
+ */
 function initAutocomplete() {
     var input = document.getElementById('location');
     var defaultBounds = new google.maps.LatLngBounds(

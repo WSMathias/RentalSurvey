@@ -1,4 +1,7 @@
 <?php
+/**
+* Creates connection to the database.
+*/
     $dbserver = "localhost";
     $dbusername = "survey";
     $dbpassword = "survey";

@@ -1,4 +1,7 @@
 <?php
+/**
+* Creates connection to the datbase using PHP pdo.
+*/
     $dbserver = "localhost";
     $dbusername = "survey";
     $dbpassword = "survey";

@@ -1,15 +1,22 @@
 class HttpClient{
+    /**
+     * Initializes the url.
+     * @param {String} url 
+     */
     constructor(url){
-        //make sure url ends with "/"
         this.url=url;        
-        // if(this.url.substr(-1)!="/"){
-        //     this.url=this.url+"/"
-        // }
-        this.id=""
-        this.qry=""
-        this.data=""
+        if(this.url.substr(-1)!="/"){
+            this.url=this.url+"/";
+        }
+        this.id="";
+        this.qry="";
+        this.data="";
     }
-//xhr.get("?q="query")
+ /**
+  * Get data from server.
+  * @param {String} qry 
+  * @return {array of json object}
+  */   
 get(qry=""){
     var client=this;
     return new Promise(function(resolve,reject){
@@ -25,7 +32,8 @@ get(qry=""){
             if(xhr.response!=""){
                 resolve(JSON.parse(xhr.response));              
             }
-            resolve(xhr.response);
+            const nullResponse = [{}];
+            resolve(nullResponse);
         }
         else
             reject(xhr.statusText)
@@ -35,7 +43,11 @@ get(qry=""){
     });
 
 }
-//xhr.post(data,qry)
+/**
+ * Post data to the server.
+ * @param {Object} data 
+ * @param {String} qry 
+ */
 post(data,qry=""){
     this.qry=qry;
     this.data=data;
@@ -66,7 +78,11 @@ post(data,qry=""){
     
 
 }
-//xhr.update(data,id)
+/**
+ * Updates the data in the server specified by the id.
+ * @param {String} data 
+ * @param {Number} id 
+ */
 update(data,id=""){
     var client=this;
     this.data=data;
@@ -89,7 +105,10 @@ update(data,id=""){
     }); 
 
 }
-//xhr.delete(id)
+/**
+ * Delete data from server specified by the id.
+ * @param {Number} id 
+ */
 delete(id){
     var client=this;
     this.id=id;

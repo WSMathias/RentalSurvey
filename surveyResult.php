@@ -1,85 +1,85 @@
 <?php 
 session_start();
 $list = [];
-$currentURL = $_SERVER['REQUEST_URI'];
+
 if ($_GET["searchLocation"] != "") {
-    $searchString = $_GET["searchLocation"];
-    $area = $_GET["area"];
-    if ($area != "--") {
-        switch ($area)  {
-            case "200-600" : {
-                $area = " and area > 200 and area < 600";
-                break;
-            } 
-            case "600-1100" : {
-                $area = " and area > 600 and area < 1100";
-                break;
-            } 
-            case "1100-1800" : {
-                $area = " and area > 1100 and area < 1800";
-                break;
-            } 
-            case "above 1800" : {
-                $area = " and area > 1800";
-                break;
-            } 
+        $searchString = $_GET["searchLocation"];
+        $area = $_GET["area"];
+        if ($area != "--") {
+            switch ($area)  {
+                case "200-600" : {
+                    $area = " and area > 200 and area < 600";
+                    break;
+                } 
+                case "600-1100" : {
+                    $area = " and area > 600 and area < 1100";
+                    break;
+                } 
+                case "1100-1800" : {
+                    $area = " and area > 1100 and area < 1800";
+                    break;
+                } 
+                case "above 1800" : {
+                    $area = " and area > 1800";
+                    break;
+                } 
+            }
+        } else{
+            $area = "";
         }
-    } else{
-        $area = "";
-    }
-    $deposit = $_GET["deposit"];
-    if ($deposit != "--") {
-        switch ($deposit)  {
-            case "30000-70000" : {
-                $deposit = " and deposit > 3000 and deposit < 70000";
-                break;
-            } 
-            case "70000-120000" : {
-                $deposit = " and deposit > 70000 and deposit < 120000";
-                break;
-            } 
-            case "above 120000" : {
-                $deposit = " and deposit > 120000";
-                break;
-            } 
+        $deposit = $_GET["deposit"];
+        if ($deposit != "--") {
+            switch ($deposit)  {
+                case "30000-70000" : {
+                    $deposit = " and deposit > 3000 and deposit < 70000";
+                    break;
+                } 
+                case "70000-120000" : {
+                    $deposit = " and deposit > 70000 and deposit < 120000";
+                    break;
+                } 
+                case "above 120000" : {
+                    $deposit = " and deposit > 120000";
+                    break;
+                } 
+            }
+        } else{
+            $deposit = "";
         }
-    } else{
-        $deposit = "";
-    }
-    
+        
 
 
-    $lease = $_GET["lease"];
-    if ($lease != "--") {
-        switch ($lease)  {
-            case "1-6" : {
-                $lease = " and lease_period > 1 and lease_period < 6";
-                break;
-            } 
-            case "6-15" : {
-                $lease = " and lease_period > 6 and lease_period < 15";
-                break;
-            } 
-            case "above 15" : {
-                $lease = " and lease_period > 15";
-                break;
-            } 
+        $lease = $_GET["lease"];
+        if ($lease != "--") {
+            switch ($lease)  {
+                case "1-6" : {
+                    $lease = " and lease_period > 1 and lease_period < 6";
+                    break;
+                } 
+                case "6-15" : {
+                    $lease = " and lease_period > 6 and lease_period < 15";
+                    break;
+                } 
+                case "above 15" : {
+                    $lease = " and lease_period > 15";
+                    break;
+                } 
+            }
+        } else{
+            $lease = "";
         }
-    } else{
-        $lease = "";
-    }
-    include("dbConnect.php");
-    if($conn->connect_error) {
-       die("connection failed : ".$conn->connect_error);
-    }
-    $sql = "select * from places a,details b where a.id=b.Lid and  a.location='$searchString' $area $deposit $lease";
-    if($result = $conn->query($sql)) {
-       if (mysqli_num_rows($result)>0){            
-            while ($row = $result->fetch_assoc()) 
-                $list[] = $row;
-       } else {
-            header("Location: index.php");
-       }
+        include("dbConnect.php");
+        if($conn->connect_error) {
+        die("connection failed : ".$conn->connect_error);
+        }
+        $sql = "select * from places a,details b where a.id=b.Lid and  a.location='$searchString' $area $deposit $lease";
+        if($result = $conn->query($sql)) {
+        if (mysqli_num_rows($result)>0){            
+                while ($row = $result->fetch_assoc()) 
+                    $list[] = $row;
+        } else {
+                header("Location: index.php");
+        }
     }
     }else {    
         header("Location: index.php");
@@ -105,7 +105,7 @@ if ($_GET["searchLocation"] != "") {
                     <li><a href="index.php">Home</a></li>
                     <li><a href="surveyEntry.php">Survey Entry</a></li>
                     <li class="active"><a href="surveyResult.php">Survey Result</a></li>
-                    <li><a href="<?php echo $currentURL. '&stat=true'; ?>">Get statics</a></li>
+                    <li><a href="table.php">Get statics</a></li>
                 </ul>
             </div>
  </div>

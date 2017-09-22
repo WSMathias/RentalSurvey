@@ -1,4 +1,6 @@
-    
+    /**
+     * Hides/displays the advanced search forms inputs.
+     */
     function toggleAdvancedOptions() {
         document.getElementById('suggestion').innerHTML="";    
         const advancedSearchBtn = document.getElementsByClassName('advancedSearch')[0];
@@ -8,7 +10,10 @@
         else
             advancedSearchOptions.style.display="none";
     }
-    /*  select the suggested places from suggestion list */
+    /**
+     * Select the suggested places from suggestion list 
+     * @param {String} value 
+     */
     function selectSuggestion(value) {
         document.getElementById('searchTxt').value = value; 
         document.getElementById('suggestion').innerHTML="";    
@@ -34,5 +39,5 @@
         else {
             document.getElementById('suggestion').innerHTML="";    
         }
-        return;
+        
     }

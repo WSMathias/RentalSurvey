@@ -1,4 +1,8 @@
+
 <?php 
+/**
+*  Accepts the input for form entry.
+*/
 session_start();
 $_SESSION["statusMessage"] = "";
 $location = $_POST["place"];
@@ -7,14 +11,23 @@ $price = (float)$_POST["price"];
 $deposit = (float)$_POST["deposit"];
 $lease = (int)$_POST["lease"];
 $lid;
-
+/**
+*  Redirects to index.php if any errors.
+*/
 function onError(){ 
     header("Location: surveyEntry.php");
 }
+/**
+* Sets statusMessage session on success of the entry.
+*/
 function onSuccess(){
     $_SESSION["statusMessage"] .= "<br>success<br>";
     header("Location: surveyEntry.php");
 }
+/**
+* Check if the parameters are empty.
+* return {boolean}
+*/
 function isempty() {
     global $area,$location,$lease,$deposit,$price; 
     if ($location == "" || $area == 0 || $price == 0 || $deposit == 0 || $lease==0){
@@ -24,16 +37,27 @@ function isempty() {
     else
         return false;
 }
+/**
+* Validates for any special characters.
+* return {boolean}
+*/
 function validate($string) {
+    /**
+    * regular expression to check for scpecial characters to avoid sql injection
+    */
     if (preg_match('/[\'^£$%&*()}{@#~?><>|=_+¬-]/', $string))
        {
          $_SESSION["statusMessage"] .= $string." : special charectorsare not allowed<br>"; 
          return false;
-        }
+       }
     else
         {
             return true;}
 }
+/**
+* Checks if parameters are completely validated.
+* return {boolean}
+*/
 function isValidated(){
     global $area,$location,$lease,$deposit;
     if(!isempty()) {
@@ -53,7 +77,9 @@ function isValidated(){
     else 
         return false;
 }
-
+/**
+* Inserts the data to the database if validated.
+*/
 if (!isValidated()) {
     onError();
 } else {

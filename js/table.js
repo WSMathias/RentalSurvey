@@ -1,8 +1,8 @@
 const url="http://localhost/RentalSurvey/stats.php";
 var serverData =new HttpClient(url)
 var data=[];
-var descend="DESC";
-var ascend="ASC";
+const descend="DESC";
+const ascend="ASC";
 var fRespons=descend;
 var fRate=descend;
 var fDeposit=descend;
@@ -12,13 +12,18 @@ var table=document.getElementById("tbrow")
 $( document ).ready(function() {
     getTableData();
 });
+/**
+ * Retrieve list of places with details
+ */
 function getTableData(){
      serverData.get().then(function (result){
          data=result;
          loadTable()
      })
 }
-
+/**
+ * Generate and append the response in the form of table
+ */
 function loadTable(){
     table.innerHTML="";
     for (i in data){
@@ -33,7 +38,9 @@ function loadTable(){
       </tr>`;
     }
 }
-
+/**
+ * get table data sorted in the order of responds/location
+ */
 function sortRespond(){
 
     const qry="?sort=respond&type="+fRespons;
@@ -43,6 +50,9 @@ function sortRespond(){
         loadTable()
     })
 }
+/**
+ * get table data sorted in the order of rent/sqrft
+ */
 function sortRent(){
     const qry="?sort=rent&type="+fRate;
     serverData.get(qry).then(function (result){
@@ -51,6 +61,9 @@ function sortRent(){
         loadTable()
     })
 }
+/**
+ * get table data sorted in the order of Deposit
+ */
 function sortDeposit(){
     const qry="?sort=deposit&type="+fDeposit;
     serverData.get(qry).then(function (result){
@@ -59,6 +72,9 @@ function sortDeposit(){
         loadTable()
     })
 }
+/**
+ * get table data sorted in the order of lease period
+ */
 function sortPeriod(){
     const qry="?sort=lease&type="+fLease;
     serverData.get(qry).then(function (result){
