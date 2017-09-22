@@ -1,4 +1,4 @@
-const url="http://localhost/RentalSurvey/stats.php";
+const url="http://localhost:89/RentalSurvey/stats.php";
 var serverData =new HttpClient(url)
 var data=[];
 const descend="DESC";
