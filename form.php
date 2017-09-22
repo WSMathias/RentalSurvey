@@ -16,7 +16,8 @@ function onSuccess(){
     header("Location: surveyEntry.php");
 }
 function isempty() {
-    if ($location == null || $area == 0 || $price == 0 || $deposit == 0 || $lease==0){
+    global $area,$location,$lease,$deposit,$price; 
+    if ($location == "" || $area == 0 || $price == 0 || $deposit == 0 || $lease==0){
         $_SESSION["statusMessage"] .= "Fields cannot be empty.<br>"; 
         return true;
     }
@@ -26,7 +27,7 @@ function isempty() {
 function validate($string) {
     if (preg_match('/[\'^£$%&*()}{@#~?><>|=_+¬-]/', $string))
        {
-         $_SESSION["statusMessage"] .= $string." cannot have special charectors<br>"; 
+         $_SESSION["statusMessage"] .= $string." : special charectorsare not allowed<br>"; 
          return false;
         }
     else
@@ -37,7 +38,7 @@ function isValidated(){
     global $area,$location,$lease,$deposit;
     if(!isempty()) {
         if(validate($location) && validate($deposit) && validate($lease) && validate($area)){
-            if (($area > 300 && $area < 100000) || ($lease > 1))
+            if (($area > 300 && $area < 100000) && ($lease > 1))
                return true;
             else{
                 $_SESSION["statusMessage"] .= "Area must be between 300 sqrft and 100000 sqrft<br>"; 
@@ -47,7 +48,10 @@ function isValidated(){
         else  {
             return false;
         }
+        return true;
     }
+    else 
+        return false;
 }
 
 if (!isValidated()) {
