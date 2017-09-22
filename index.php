@@ -9,6 +9,7 @@
         <link href="css/index.css" rel="stylesheet">
     </head>
 <body>
+<!-- Navbar -->
 <div class="nav navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -28,11 +29,12 @@
                 </div>
             </div>
  </div>
- 
+ <!-- Site heading -->
 <div class="jumbotron heading text-center">
         <h1>Find your dream property.</h1>
         <h3> Every information at your finger tip. </h3>
 </div>
+<!-- Search box  -->
  <div class="container">
        <div class="row">
             <div class="col-md-offset-2 col-md-8 col-md-offset-2 col-xs-offset-1 col-xs-10 col-xs-offset-1">
@@ -42,7 +44,7 @@
                         <a href="#" onclick="toggleAdvancedOptions()" class="advancedSearch btn btn-info btn-md">Advanced</a>
                         <input type="text" class="form-control" id="searchTxt" onkeyup="suggestPlaces()" name="searchLocation" placeholder="Search by location" autocomplete="off">
                         <div id="suggestion">
-                            <!-- <span>suggestion dropdown</span> -->
+                            <!-- <span>suggestion dropdown to be fileed dynamically</span> -->
                         </div>
                     </div>
                     <div class="row advanced_option">

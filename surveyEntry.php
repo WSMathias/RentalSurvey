@@ -8,7 +8,8 @@
         <link href="css/main.css" rel="stylesheet">
         <link href="css/surveyEntry.css" rel="stylesheet">
     </head>
-        <body>
+    <body>
+    <!-- Navbar -->
         <div class="nav navbar-inverse">
                 <div class="container-fluid">
                 <div class="navbar-header">
@@ -28,6 +29,7 @@
                 </div>
             </div>
         </div>
+        <!-- Form to entry details -->
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-offset-3 col-md-6 col-md-offset-3 form_box ">
@@ -59,11 +61,15 @@
                 </div>
             </div>
         </div> 
+        <!-- Alert Box -->
         <div class="container-fluid alert_box">
             <div class="row">
                 <div class="col-md-offset-3 col-md-6 col-md-offset-3">
                   <div class="alert alert-info" style="<?php 
-                  session_start();
+                /**
+                * Displays the status message if any.
+                */
+                 session_start();
                   if (!isset($_SESSION["statusMessage"]) || $_SESSION["statusMessage"] == "")
                     echo 'display:none;';
                   else

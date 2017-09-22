@@ -11,6 +11,7 @@
   <link href="css/table.css" rel="stylesheet">
 </head>
 <body>
+<!-- Navbar -->
 <div class="nav navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -30,6 +31,7 @@
                 </div>
             </div>
  </div>
+<!-- Table with the statistics about the data about different locations. -->
 <div class=" row " >
 <div class=" col-xs-11  col-sm-12  col-md-offset-1 col-md-10  col-md-offset-1" >           
   <table class=" table table-bordered">

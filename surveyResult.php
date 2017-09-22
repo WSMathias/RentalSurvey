@@ -1,4 +1,7 @@
 <?php 
+/**
+* Generates the data for the searched location and stores it into and array.
+*/
 session_start();
 $list = [];
 
@@ -96,6 +99,7 @@ if ($_GET["searchLocation"] != "") {
         <link href="css/surveyResult.css" rel="stylesheet">
     </head>
 <body>
+<!-- Navbar -->
 <div class="nav navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -109,6 +113,7 @@ if ($_GET["searchLocation"] != "") {
                 </ul>
             </div>
  </div>
+<!-- Table with the list of location with details. -->
  <div class="container">
         <div class="row">
           <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">           
@@ -123,6 +128,9 @@ if ($_GET["searchLocation"] != "") {
                 </thead>
                 <tbody id="tbrow">
                 <?php
+                /**
+                * Displays the data stored in the array in the form of table .
+                */
                 foreach ($list as $row)
                 {
                     
