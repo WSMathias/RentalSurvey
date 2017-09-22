@@ -28,7 +28,7 @@
         const searchTxt = document.getElementById('searchTxt').value;
         if (searchTxt!="") {
             const suggestionBox = document.getElementById('suggestion');
-            const request = new HttpClient("autocomplete.php");
+            const request = new HttpClient("http://localhost:89/RentalSurvey/autocomplete.php");
             request.get("?q="+searchTxt).then(function(response) {
                 suggestionBox.innerHTML = "";
                 for (i in response) {
@@ -39,5 +39,5 @@
         else {
             document.getElementById('suggestion').innerHTML="";    
         }
-        
+
     }
