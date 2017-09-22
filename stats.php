@@ -1,41 +1,76 @@
 <?php
-$highDemand;
-$lowDemand;
-$dbserver = "";
-$dbusername = "survey";
-$dbpassword = "survey";
-$dbname = "surveydb";
-$connDemand = new mysqli($dbserver,$dbusername,$dbpassword,$dbname);
-$sqlMinDemand = "select location from survey where price in(select min(price) from survey)";
-if ($result=$connDemand->query($sqlMinDemand)) {
-    if (mysqli_num_rows($result) > 0) {
-        $lowDemand = $result->fetch_assoc()["location"]; 
-    }
+$sort=$_GET["sort"];
+$sortType=$_GET["type"];
+$qsort;
+
+include("dbConnectPDO.php");
+if($sort=="" && $sortType==""){
+        $stmt = $pdo->query(" select a.location,count(b.Lid) as lCount, ROUND(avg(b.price),2) as avgPrice,ROUND(avg(b.deposit),2) as avgDeposit, 
+        ROUND(avg(b.lease_period),2) as avgLease from places a,
+        details b where a.id=b.Lid group by a.id order by avgPrice");
+        // returns jason result as json object
+        echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
 }
-$sqlMaxDemand = "select location from survey where price in(select max(price) from survey)";
-if ($result=$connDemand->query($sqlMaxDemand)) {
-    if (mysqli_num_rows($result) > 0) {
-        $highDemand = $result->fetch_assoc()["location"]; 
+else{
+        $qry="select a.location,count(b.Lid) as lCount, ROUND(avg(b.price),2) as avgPrice,ROUND(avg(b.deposit),2) as avgDeposit, 
+        ROUND(avg(b.lease_period),2) as avgLease from places a,
+        details b where a.id=b.Lid group by a.id order by ";
+        include("dbConnectPDO.php");
+        if($sortType=="ASC"){
+            switch ($sort){
+                case "respond":{
+                    $qsort="lCount";
+                    break;
+                }
+                case "rent":{
+                    $qsort="avgPrice";
+                    break;
+                }
+                case "deposit":{
+                    $qsort="avgDeposit";
+                    break;
+                }
+                case "lease":{
+                    $qsort="avgLease";
+                    break;
+                }
+            }
+            $qsort=$qsort." ".$sortType;
+        }
+        else if($sortType=="DESC"){
+            switch ($sort){
+                case "respond":{
+                    $qsort="lCount";
+                    break;
+                }
+                case "rent":{
+                    $qsort="avgPrice";
+                    break;
+                }
+                case "deposit":{
+                    $qsort="avgDeposit";
+                    break;
+                }
+                case "lease":{
+                    $qsort="avgLease";
+                    break;
+                }
+            }
+            $qsort=$qsort." ".$sortType;
+        }
+        $qry=$qry." ".$qsort;
+
+// print_r($qry);
+// echo " <br>";
+        $stmt = $pdo->query("$qry");
+        //returns jason result as json object
+        echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
     }
-}
+
+
+// $stmt = $pdo->query(" select a.location,count(b.Lid) as lCount, ROUND(avg(b.price),2) as avgPrice,ROUND(avg(b.deposit),2) as avgDeposit, 
+// ROUND(avg(b.lease_period),2) as avgLease from places a,
+// details b where a.id=b.Lid group by a.id order by avgPrice  ");
+// //returns jason result as json object
+// echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
 ?>
-   <div class="row alert-box"  
-    style=
-    "position:fixed;
-     z-index:9999;
-     height:100vh;
-     top:0px;
-     background-color:transparent; width:100vw;">
-     <div  style="position:absolute;
-        top:30%;
-        left:25%;
-        width:54vw;
-        z-index:10000;
-        ">
-        <a href="<?php echo $_SERVER["SCRIPT_NAME"]; ?>" style="padding:5px;" class="close" data-dismiss="alert-box">X</a>
-            <div class="alert alert-info" style="padding:40px; border:2px solid black;">  
-            <h3 style="color:red;">High demand area :<?php echo '<a href="surveyResult.php?searchLocation='.$highDemand .'">'. $highDemand; ?></a></h3>
-            <h3 style="color:green;">Low demand area : <?php echo '<a href="surveyResult.php?searchLocation='.$lowDemand .'">'. $lowDemand; ?></a></h3>
-       </div>
-    </div>
-</div>

@@ -1,95 +1,88 @@
-<?php 
-$currentURL = $_SERVER['REQUEST_URI'];
-?>
 <!DOCTYPE html>
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <style>
-        .form_box {
-            background:grey;
-            height:auto;
-            margin-top:100px;
-            padding : 20px;
-        }
-
-        .submit_button {
-            margin : 10px 42%;
-        }
-        </style>
+        <script src="https://maxcdn.bootstrapcdn.com"> </script>
+        <link href="css/main.css" rel="stylesheet">
+        <link href="css/surveyEntry.css" rel="stylesheet">
     </head>
-    <body>
-    
+        <body>
         <div class="nav navbar-inverse">
-            <div class="container-fluid">
+                <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand">Region Survey</a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+                    <li><a class="navbar-brand">RentalSurvey</a></li>
                 </div>
-                <ul class="nav navbar-nav">
-                    <li><a href="index.php">Home</a></li>
-                    <li class="active"><a href="surveyEntry.php">Survey Entry</a></li>
-                    <li><a href="surveyResult.php">Survey Result</a></li>
-                    <li><a href="<?php echo $currentURL. '?stat=true'; ?>">Get statics</a></li>
-                </ul>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active"><a href="index.php">Home</a></li>
+                        <li><a href="surveyEntry.php">Survey Entry</a></li>
+                        <li><a href="table.php">Get statics</a></li>
+                    </ul> 
+                </div>
             </div>
         </div>
-        <?php 
-        if ($_GET["stat"] == 'true') {
-            include("stats.php");
-        }
-
-        ?>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-offset-2 col-md-8 col-md-offset-2 form_box ">
-                  <form action="form.php" method="GET" >
+                <div class="col-md-offset-3 col-md-6 col-md-offset-3 form_box ">
+                  <form action="form.php" method="POST" >
                     <div class="form-group">
                     <label>Location </label>
-                    <input type="text" class="form-control" name="place">
+                    <input type="text" class="form-control" id="location" name="place" placeholder="">
                     </div>
                     <div class="form-group">
-                    <label>Area in sqft </label>
+                    <label>Area (sqft)</label>
                     <input type="number" class="form-control"  name="area">
                     </div>
                     <div class="form-group">
-                    <label>Price </label>
+                    <label>Price (Rs) </label>
                     <input type="number" class="form-control" name="price">
                     </div>
                     <div class="form-group">
-                    <label>Desposit </label>
+                    <label>Desposit (Rs) </label>
                     <input type="number" class="form-control" name="deposit">
                     </div>
                     <div class="form-group">
                     <label>Lease period(month) :</label>
                     <input type="number" class="form-control" name="lease">
                     </div>
-                    <input type="submit"  class="submit_button col-md-offest-4  mol-md-offset-4 btn btn-primary">
-                    <?php
-                    session_start(); 
-                    if (isset($_SESSION["statusMessage"]))
-                    {
-                    ?>
-                    <div class="alert alert-<?php if($_SESSION['statusMessage']=='error') echo 'danger'; else echo 'success';?> alert-dismissable fade-in">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                        <strong><?php
-                            if ($_SESSION["statusMessage"] == "success")
-                                echo "Successfully inserted!!";
-                            else
-                                echo "Fields cannot be empty";
-                            unset($_SESSION["statusMessage"]);
-                        ?></strong>
+                    <div class="text-center">
+                    <input type="submit" value="Submit" class="submit_button col-md-offest-4  mol-md-offset-4 btn btn-primary">
                     </div>
-                    <?php 
-                    }
-                    ?>
-
                   </form>
                 </div>
             </div>
-        </div>
-        
+        </div> 
+        <div class="container-fluid alert_box">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6 col-md-offset-3">
+                  <div class="alert alert-info" style="<?php 
+                  session_start();
+                  if (!isset($_SESSION["statusMessage"]) || $_SESSION["statusMessage"] == "")
+                    echo 'display:none;';
+                  else
+                    echo 'display:block;';
+                   ?>">
+                        <?php      
+                        if (isset($_SESSION["statusMessage"]) || $_SESSION["statusMessage"] != "")
+                            {echo $_SESSION["statusMessage"];
+                                unset($_SESSION["statusMessage"]);
+                            }
+                                                  
+                        ?>
+                  </div>
+                </div>
+            </div>
+        </div> 
+           
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPX7xWTZQaFlNYvwP59-P0oElX32Jrl3s&libraries=places&callback=initAutocomplete"
+         async defer></script>
+         <script src="./js/surveyEntry.js"></script>
     </body>
 </html>

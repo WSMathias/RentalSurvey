@@ -1,36 +1,89 @@
 <?php 
 session_start();
+$list = [];
 $currentURL = $_SERVER['REQUEST_URI'];
 if ($_GET["searchLocation"] != "") {
     $searchString = $_GET["searchLocation"];
-    $dbserver = "";
-    $dbusername = "survey";
-    $dbpassword = "survey";
-    $dbname = "surveydb";
-    $location ;
-    $averagePrice ;
-    $averageDeposit;
-    $averageLease ;
-    $conn = new mysqli($dbserver,$dbusername,$dbpassword,$dbname);
+    $area = $_GET["area"];
+    if ($area != "--") {
+        switch ($area)  {
+            case "200-600" : {
+                $area = " and area > 200 and area < 600";
+                break;
+            } 
+            case "600-1100" : {
+                $area = " and area > 600 and area < 1100";
+                break;
+            } 
+            case "1100-1800" : {
+                $area = " and area > 1100 and area < 1800";
+                break;
+            } 
+            case "above 1800" : {
+                $area = " and area > 1800";
+                break;
+            } 
+        }
+    } else{
+        $area = "";
+    }
+    $deposit = $_GET["deposit"];
+    if ($deposit != "--") {
+        switch ($deposit)  {
+            case "30000-70000" : {
+                $deposit = " and deposit > 3000 and deposit < 70000";
+                break;
+            } 
+            case "70000-120000" : {
+                $deposit = " and deposit > 70000 and deposit < 120000";
+                break;
+            } 
+            case "above 120000" : {
+                $deposit = " and deposit > 120000";
+                break;
+            } 
+        }
+    } else{
+        $deposit = "";
+    }
+    
+
+
+    $lease = $_GET["lease"];
+    if ($lease != "--") {
+        switch ($lease)  {
+            case "1-6" : {
+                $lease = " and lease_period > 1 and lease_period < 6";
+                break;
+            } 
+            case "6-15" : {
+                $lease = " and lease_period > 6 and lease_period < 15";
+                break;
+            } 
+            case "above 15" : {
+                $lease = " and lease_period > 15";
+                break;
+            } 
+        }
+    } else{
+        $lease = "";
+    }
+    include("dbConnect.php");
     if($conn->connect_error) {
        die("connection failed : ".$conn->connect_error);
     }
-    $sql = "select avg(price) as avgPrice,avg(deposit) as avgDeposit,avg(lease_period) as avgLease from survey where location like '$searchString'";
+    $sql = "select * from places a,details b where a.id=b.Lid and  a.location='$searchString' $area $deposit $lease";
     if($result = $conn->query($sql)) {
-       if (mysqli_num_rows($result)==0){
-           $_SESSION["statusMessage"] = "No such location";
+       if (mysqli_num_rows($result)>0){            
+            while ($row = $result->fetch_assoc()) 
+                $list[] = $row;
+       } else {
             header("Location: index.php");
-       }else {
-        while ($row = $result->fetch_assoc()) {                
-                $averagePrice = $row["avgPrice"];
-                $averageDeposit = $row["avgDeposit"];
-                $averageLease = $row["avgLease"];
-         }
        }
     }
-}else {    
-    header("Location: index.php");
-}
+    }else {    
+        header("Location: index.php");
+    }
 
 ?>
 <html>
@@ -39,16 +92,9 @@ if ($_GET["searchLocation"] != "") {
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <style>
-        .jumbotron {
-            height:auto;
-            margin-top:100px;
-            padding : 20px;
-        }
-
-        </style>
+        <link href="css/main.css" rel="stylesheet">
+        <link href="css/surveyResult.css" rel="stylesheet">
     </head>
-  
 <body>
 <div class="nav navbar-inverse">
             <div class="container-fluid">
@@ -63,22 +109,34 @@ if ($_GET["searchLocation"] != "") {
                 </ul>
             </div>
  </div>
- 
- <?php 
-        if ($_GET["stat"] == 'true') {
-            include("stats.php");
-        }
-
-        ?>
  <div class="container">
-        <div class="jumbotron">
-            <h1>Location : <?php echo strtoupper($searchString); ?></h1>
-            <h3>Average Price :<?php echo $averagePrice; ?></h3>
-            <h3>Average Deposit : <?php echo $averageDeposit; ?></h3>
-            <h3>Average Lease Period : <?php echo $averageLease; ?></h3>
-        </div>
-        
+        <div class="row">
+          <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">           
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>LOCATION</th>
+                    <th>AREA</th>
+                    <th>DEPOSIT</th>
+                    <th>LEASE PERIOD</th>
+                </tr>
+                </thead>
+                <tbody id="tbrow">
+                <?php
+                foreach ($list as $row)
+                {
+                    
+                    echo '<tr><td>'. $row["location"].'</td>
+                    <td>'. $row["AREA"].'</td>
+                    <td>'. $row["DEPOSIT"].'</td>
+                    <td>'. $row["LEASE_PERIOD"].'</td><tr>';
+                    
+                }
+                ?>
+                </tbody>
+            </table>
+          </div>
+        </div>    
  </div>
-
 </body>
 </html>
