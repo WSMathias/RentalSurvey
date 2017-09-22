@@ -1,7 +1,8 @@
+
+<?php
 /**
 *  Returns the list of locations for the search 
 */
-<?php
 $return_arr = Array();
 $query = $_GET["q"];
 include("dbConnect.php");
