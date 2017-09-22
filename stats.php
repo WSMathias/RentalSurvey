@@ -1,7 +1,8 @@
+
+<?php
 /**
 * Generates statistics fo the complete data in the database based on location.
 */
-<?php
 $sort=$_GET["sort"];
 $sortType=$_GET["type"];
 $qsort;
