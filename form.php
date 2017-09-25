@@ -47,7 +47,7 @@ function validate($string) {
     */
     if (preg_match('/[\'^£$%&*()}{@#~?><>|=_+¬-]/', $string))
        {
-         $_SESSION["statusMessage"] .= $string." : special charectorsare not allowed<br>"; 
+         $_SESSION["statusMessage"] .= $string." : special charectors are not allowed<br>"; 
          return false;
        }
     else
@@ -59,7 +59,7 @@ function validate($string) {
 * return {boolean}
 */
 function isValidated(){
-    global $area,$location,$lease,$deposit;
+    global $area,$location,$lease,$deposit,$price;
     if(!isempty()) {
         if(validate($location) && validate($deposit) && validate($lease) && validate($area)){
             if (($area > 300 && $area < 100000) && ($lease > 1))
