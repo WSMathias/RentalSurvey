@@ -5,8 +5,8 @@ class HttpClient{
      */
     constructor(url){
         this.url=url;        
-        if(this.url.substr(-1)!="/"){
-            this.url=this.url+"/";
+        if(this.url.substr(-1)=="/"){
+            this.url=this.url.substring(0,this.url.length-1)
         }
         this.id="";
         this.qry="";

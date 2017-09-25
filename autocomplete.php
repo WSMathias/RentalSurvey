@@ -9,6 +9,8 @@ include("dbConnect.php");
 if($conn->connect_error) {
     die("connection failed : ".$conn->connect_error);
  }
+
+ 
  else if($query!="") {
     $query=strtoupper($query);
     $sql = " select distinct(a.location) from places a,details b  where a.id=b.Lid and  location like '$query%'";
