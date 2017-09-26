@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `details`
 --
 
-CREATE TABLE `details` (
+CREATE TABLE IF NOT EXISTS `details` (
   `ID` bigint(20) NOT NULL,
   `AREA` float(20,5) DEFAULT NULL,
   `PRICE` float(20,5) DEFAULT NULL,
@@ -61,7 +61,7 @@ INSERT INTO `details` (`ID`, `AREA`, `PRICE`, `DEPOSIT`, `LEASE_PERIOD`, `Lid`) 
 -- Table structure for table `places`
 --
 
-CREATE TABLE `places` (
+CREATE TABLE IF NOT EXISTS `places` (
   `id` bigint(20) NOT NULL,
   `location` varchar(150) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -91,7 +91,7 @@ INSERT INTO `places` (`id`, `location`) VALUES
 -- Table structure for table `survey`
 --
 
-CREATE TABLE `survey` (
+CREATE TABLE IF NOT EXISTS `survey` (
   `id` int(11) NOT NULL,
   `location` varchar(500) DEFAULT NULL,
   `area` float(20,5) DEFAULT NULL,
