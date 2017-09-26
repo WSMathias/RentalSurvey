@@ -47,7 +47,7 @@ function validate($string) {
     */
     if (preg_match('/[\'^£$%&*()}{@#~?><>|=_+¬-]/', $string))
        {
-         $_SESSION["statusMessage"] .= $string." : special charectorsare not allowed<br>"; 
+         $_SESSION["statusMessage"] .= $string." : special charectors are not allowed<br>"; 
          return false;
        }
     else
@@ -59,7 +59,7 @@ function validate($string) {
 * return {boolean}
 */
 function isValidated(){
-    global $area,$location,$lease,$deposit;
+    global $area,$location,$lease,$deposit,$price;
     if(!isempty()) {
         if(validate($location) && validate($deposit) && validate($lease) && validate($area)){
             if (($area > 300 && $area < 100000) && ($lease > 1))
@@ -83,34 +83,26 @@ function isValidated(){
 if (!isValidated()) {
     onError();
 } else {
-    include("dbConnect.php");
+    require_once("dbConnectPDO.php");
     $location = strtoupper($location);
-    if($conn->connect_error) {
-       die("connection failed : ".$conn->connect_error);
-    }
-    $sqlCheck="select id from places where location = '$location'";
-    if($result=$conn->query($sqlCheck)) {
-        if(mysqli_num_rows($result)>0){
-            $lid=($result->fetch_assoc())["id"];
-                $sql = "insert into details(area,price,deposit,lease_period,lid) values($area,ROUND($price/$area,2),$deposit,$lease,$lid)";
-                if($conn->query($sql)) {
-                    onSuccess();
-                }
-        }
-        else{
-            echo "new location= ". $location." ". $lid;
-            $sqlPlaces ="insert into places(location) values('$location')";
-            $sqlDetails ="insert into details(area,price,deposit,lease_period,lid) values($area,ROUND($price/$area,2),$deposit,$lease,LAST_INSERT_ID())";        
-            if($conn->query($sqlPlaces) && $conn->query($sqlDetails)) {
-                onSuccess();
-            }
-            else{
-                onError();
-            }
+    $sqlCheck="select id from places where location ='$location'";
+    $stmt = $dbh->prepare($sqlCheck);
+    $stmt->execute();
+    if($stmt->rowCount()>0) {
+        $lid=($stmt->fetchAll( PDO::FETCH_ASSOC ))[0]["id"];
+        $sql = "insert into details(area,price,deposit,lease_period,lid) values($area,ROUND($price/$area,2),$deposit,$lease,$lid)";
+        $stmt = $dbh->prepare($sql);
+        if($stmt->execute()) {
+            onSuccess();
         }
     }
     else{
-        onError();
+        $sqlPlaces ="insert into places(location) values('$location')";
+        $sqlDetails ="insert into details(area,price,deposit,lease_period,lid) values($area,ROUND($price/$area,2),$deposit,$lease,LAST_INSERT_ID())";
+        if($dbh->query($sqlPlaces) && $dbh->query($sqlDetails))
+            onSuccess();
+        else
+            onError();
     }
 }
 
