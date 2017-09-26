@@ -1,5 +1,5 @@
-const url="http://localhost/stats.php";
-var serverData =new HttpClient(url)
+const url2="http://localhost:81/stats.php";
+var serverData =new HttpClient(url2)
 var data=[];
 const descend="DESC";
 const ascend="ASC";

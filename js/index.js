@@ -1,6 +1,7 @@
     /**
      * Hides/displays the advanced search forms inputs.
      */
+    const url1="http://localhost:81/autocomplete.php";
     function toggleAdvancedOptions() {
         document.getElementById('suggestion').innerHTML="";    
         const advancedSearchBtn = document.getElementsByClassName('advancedSearch')[0];
@@ -28,7 +29,7 @@
         const searchTxt = document.getElementById('searchTxt').value;
         if (searchTxt!="") {
             const suggestionBox = document.getElementById('suggestion');
-            const request = new HttpClient("http://localhost/autocomplete.php");
+            const request = new HttpClient(url1);
             request.get("?q="+searchTxt).then(function(response) {
                 suggestionBox.innerHTML = "";
                 for (i in response) {

@@ -5,6 +5,7 @@
 session_start();
 $list = [];
 
+
 if ($_GET["searchLocation"] != "") {
         $searchString = $_GET["searchLocation"];
         $area = $_GET["area"];
@@ -71,22 +72,26 @@ if ($_GET["searchLocation"] != "") {
         } else{
             $lease = "";
         }
-        include("dbConnect.php");
-        if($conn->connect_error) {
-        die("connection failed : ".$conn->connect_error);
-        }
+        require_once("./dbConnectPDO.php");
         $sql = "select * from places a,details b where a.id=b.Lid and  a.location='$searchString' $area $deposit $lease";
-        if($result = $conn->query($sql)) {
-        if (mysqli_num_rows($result)>0){            
-                while ($row = $result->fetch_assoc()) 
-                    $list[] = $row;
-        } else {
-                header("Location: index.php");
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        if($stmt->rowCount()>0) {
+            $list = $stmt->fetchAll( PDO::FETCH_ASSOC );
         }
-    }
+        else
+            echo json_encode("");
+        // if($result = $conn->query($sql)) {
+        // if (mysqli_num_rows($result)>0){            
+        //         while ($row = $result->fetch_assoc()) 
+        //             $list[] = $row;
+        // } else {
+        //         header("Location: index.php");
+        // }
+    
     }else {    
         header("Location: index.php");
-    }
+}
 
 ?>
 <html>

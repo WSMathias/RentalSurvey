@@ -22,7 +22,7 @@ get(qry="") {
     return new Promise(function(resolve,reject) {
     let xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
-    //console.log(client.url+qry); //for debuging
+    console.log(client.url+qry); //for debuging
     xhr.open("GET", client.url+qry);
     xhr.setRequestHeader("content-type", "application/json");      
     xhr.setRequestHeader("cache-control", "no-cache");
