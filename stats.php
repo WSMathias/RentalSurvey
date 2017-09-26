@@ -6,18 +6,12 @@
 $sort=$_GET["sort"];
 $sortType=$_GET["type"];
 $qsort;
-require_once("./dbConnect.php");
+
 function jsonResponse($qry) {
-    global $qsort,$qry,$conn;
-    $list = [];
-    $result = $conn->query($qry);
-    if (mysqli_num_rows($result) > 0) { 
-         while ($row = $result->fetch_assoc())  {
-            $list[] = $row;
-         }
-    echo json_encode($list);
-    } else 
-    echo json_encode(array("status" => null));
+        require_once("./dbConnectPDO.php");
+        $stmt = $dbh->prepare($qry);
+        $stmt->execute();
+        echo json_encode($stmt->fetchAll( PDO::FETCH_ASSOC ));
  
 }
 if($sort=="" && $sortType==""){

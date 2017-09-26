@@ -32,7 +32,7 @@
             request.get("?q="+searchTxt).then(function(response) {
                 suggestionBox.innerHTML = "";
                 for (i in response) {
-                    suggestionBox.innerHTML += '<span onclick="selectSuggestion(this.innerHTML)">' + response[i] + '</span>'; 
+                    suggestionBox.innerHTML += '<span onclick="selectSuggestion(this.innerHTML)">' + response[i].location + '</span>'; 
                 }
             });
         }

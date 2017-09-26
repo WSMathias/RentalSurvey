@@ -20,13 +20,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>                        
                     </button>
-                    <li><a class="navbar-brand">RentalSurvey</a></li>
+                    <li><a href="index.php" class="navbar-brand">RentalSurvey</a></li>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="index.php">Home</a></li>
+                        <li ><a href="index.php">Home</a></li>
                         <li><a href="surveyEntry.php">Survey Entry</a></li>
-                        <li><a href="table.php">Get statics</a></li>
+                        <li class="active"><a href="table.php">Get statics</a></li>
                     </ul> 
                 </div>
             </div>

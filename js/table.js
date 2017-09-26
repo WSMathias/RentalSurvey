@@ -15,7 +15,7 @@ $( document ).ready(function() {
 /**
  * Retrieve list of places with details
  */
-function getTableData(){
+function getTableData() {
      serverData.get().then(function (result){
          data=result;
          loadTable()
@@ -24,10 +24,9 @@ function getTableData(){
 /**
  * Generate and append the response in the form of table
  */
-function loadTable(){
+function loadTable() {
     table.innerHTML="";
-    for (i in data){
-        console.log(data[i].location);
+    for (i in data) {
         table.innerHTML+=
       `<tr>
         <td>`+data[i].location+`</td>
@@ -41,10 +40,10 @@ function loadTable(){
 /**
  * get table data sorted in the order of responds/location
  */
-function sortRespond(){
+function sortRespond() {
 
     const qry="?sort=respond&type="+fRespons;
-    serverData.get(qry).then(function (result){
+    serverData.get(qry).then(function (result) {
         data=result;
         fRespons = (fRespons==descend)?ascend:descend;
         loadTable()
@@ -53,7 +52,7 @@ function sortRespond(){
 /**
  * get table data sorted in the order of rent/sqrft
  */
-function sortRent(){
+function sortRent() {
     const qry="?sort=rent&type="+fRate;
     serverData.get(qry).then(function (result){
         data=result;
@@ -64,9 +63,9 @@ function sortRent(){
 /**
  * get table data sorted in the order of Deposit
  */
-function sortDeposit(){
+function sortDeposit() {
     const qry="?sort=deposit&type="+fDeposit;
-    serverData.get(qry).then(function (result){
+    serverData.get(qry).then(function (result) {
         data=result;
         fDeposit = (fDeposit==descend)?ascend:descend;
         loadTable()
@@ -75,9 +74,9 @@ function sortDeposit(){
 /**
  * get table data sorted in the order of lease period
  */
-function sortPeriod(){
+function sortPeriod() {
     const qry="?sort=lease&type="+fLease;
-    serverData.get(qry).then(function (result){
+    serverData.get(qry).then(function (result) {
         data=result;
         fLease = (fLease==descend)?ascend:descend;
         loadTable()
