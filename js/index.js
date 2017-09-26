@@ -1,7 +1,7 @@
     /**
      * Hides/displays the advanced search forms inputs.
      */
-    const url1="http://localhost:81/autocomplete.php";
+    const url1="autocomplete.php";
     function toggleAdvancedOptions() {
         document.getElementById('suggestion').innerHTML="";    
         const advancedSearchBtn = document.getElementsByClassName('advancedSearch')[0];
